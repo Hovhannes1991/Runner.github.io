@@ -3,13 +3,23 @@ let game = document.getElementById('game');      // main blok
 let desert  = document.getElementById('desert'); // bg image
 let graund  = document.getElementById('graund'); // caracter ranning graund
 
-game.style.width = desert.width / 2;
-desert.style.left = 0;
-graund.style.left = 0;
-graund.style.top = desert.height - graund.height + 10; // +10 to correct graund position
 
-document.getElementById('for-border').style.height = desert.height - 10 + 'px';               //just for borders 
-document.getElementById('for-border').style.width = parseInt(game.style.width) - 20 + 'px';
+function styleing(){	
+    game.style.width = desert.width / 2;
+    desert.style.left = 0;
+    graund.style.left = 0;
+    graund.style.top = desert.height - graund.height + 10; // +10 to correct graund position
+
+    player.height = desert.height / 2;
+    player.style.top = desert.height - player.height;  // (player.height * 15 / 100) to correct character position
+    player.style.left = 20;
+
+    document.getElementById('for-border').style.height = desert.height - 10 + 'px';               //just for borders 
+    document.getElementById('for-border').style.width = parseInt(game.style.width) - 20 + 'px';
+}
+
+
+desert.onload = styleing();
 
 let bgMoveSpeed = 2;
 function bgMove(){
@@ -38,11 +48,6 @@ let bgMoveInterval = setInterval(function(){
 	bgMove();	
 }, 1000 / 35)
 
-
-
-player.height = desert.height / 2;
-player.style.top = desert.height - player.height - (player.height * 15 / 100);  // (player.height * 15 / 100) to correct character position
-player.style.left = 20;
 
 
 // in sprite diferent aactions have diferent images
