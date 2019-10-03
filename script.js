@@ -139,3 +139,17 @@ function actionReturn(){
 		return;
 	}	
 }
+
+
+
+//preloader
+
+let hiddenBlockForImages = document.getElementById('hiddenBlockForImages');
+for (let move in playerMoves){	
+	for(let i = 1; i <= playerMoves[move]; i++){
+		let image = document.createElement('img');
+		image.src = `src/sprite/${move}(${i}).png`;		
+		hiddenBlockForImages.appendChild(image);
+	}
+document.getElementById('preloader').style.visibility = 'hidden';
+}
