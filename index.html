@@ -14,12 +14,24 @@
     
     <img id='player' src="src/sprite/Walk(1).png">
     
-    <!-- <div id="block-shape"></div> -->
+    
     <div id="for-border"></div>
 
-    <div id="preloader">Preloader
-    	<div id="hiddenBlockForImages">   		
-    	</div>
+    <div id="preloader">
+    	<svg class='red'>
+             <circle r="50%" stroke="red" stroke-dasharray="300 400"/>  
+        </svg>
+
+        <svg class='blue'>
+             <circle r="35%" stroke="blue" stroke-dasharray="200 400"/>  
+        </svg>
+
+        <svg class='orange'>
+             <circle r="25%" stroke="orange" stroke-dasharray="50 400"/>
+             <div id="progressStatus"></div>
+        </svg>
+
+    	<div id="hiddenBlockForImages"></div>
     </div>
 
     <script type="text/javascript" src="script.js"></script>

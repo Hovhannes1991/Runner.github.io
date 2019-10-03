@@ -48,9 +48,60 @@ body {
 	width: 100vw;
 	height: 100vh;
 	z-index: 10000;
-	background-color: white;
+	background-color: #000;
 }
 
 #hiddenBlockForImages {
 	display: none;
+}
+
+
+/*this all for  preloader svg effect*/
+svg {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  background-color: transparent;
+}
+
+circle {
+  cx: 50%;
+  cy: 50%;
+  stroke-width: 3;
+  fill: none;
+}
+
+.red {
+  animation: rotateRed 1.4s linear infinite;
+}
+
+.blue {
+  animation: rotateBlue 1.4s linear infinite;
+}
+
+.orange {
+  animation: rotateOrange 1.4s linear infinite;
+}
+
+@keyframes rotateRed {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateBlue {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes rotateOrange {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#progressStatus {
+	color: lightblue;
+	font-size: 3em;
 }

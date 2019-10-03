@@ -143,9 +143,9 @@ function actionReturn(){
 
 
 //preloader
-
+let progressStatus = document.getElementById('progressStatus');
 let hiddenBlockForImages = document.getElementById('hiddenBlockForImages');
-let count = 48;
+let count = 48;  //total images in src
 let progress = 0;
 for (let move in playerMoves){
 	for(let i = 1; i <= playerMoves[move]; i++){
@@ -153,6 +153,7 @@ for (let move in playerMoves){
 		image.src = `src/sprite/${move}(${i}).png`;
 		image.addEventListener('load', function(){
 			progress += 100 / 48;
+			progressStatus.innerHTML = Math.ceil(progress);
 			if(Math.ceil(progress) >= 100){
                document.getElementById('preloader').style.visibility = 'hidden';
 			}
