@@ -143,21 +143,25 @@ function actionReturn(){
 
 
 //preloader
-let progressStatus = document.getElementById('progressStatus');
 let hiddenBlockForImages = document.getElementById('hiddenBlockForImages');
 let count = 48;  //total images in src
 let progress = 0;
 for (let move in playerMoves){
 	for(let i = 1; i <= playerMoves[move]; i++){
 		let image = document.createElement('img');
-		image.src = `src/sprite/${move}(${i}).png`;
-		image.addEventListener('load', function(){
+		image.src = `src/sprite/${move}(${i}).png`;			
+		hiddenBlockForImages.appendChild(image);
+	}
+}
+
+let progressStatus = document.getElementById('progressStatus');
+let allImages = Array.from(document.getElementsByTagName('img'));
+allImages.forEach(function(image){
+	image.addEventListener('load', function(){
 			progress += 100 / 48;
 			progressStatus.innerHTML = Math.ceil(progress);
 			if(Math.ceil(progress) >= 100){
                document.getElementById('preloader').style.visibility = 'hidden';
 			}
 		})	
-		hiddenBlockForImages.appendChild(image);
-	}
-}
+})
