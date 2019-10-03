@@ -20,8 +20,6 @@ function styleing(){
     document.getElementById('for-border').style.width = parseInt(game.style.width) - 20 + 'px';
 }
 
-desert.addEventListener('load', styleing);
-desert.src = 'src/fon.png';
 
 let bgMoveSpeed = 2;
 function bgMove(){
@@ -151,7 +149,7 @@ function actionReturn(){
 
 //preloader
 let hiddenBlockForImages = document.getElementById('hiddenBlockForImages');
-let count = 48;  //total images in src
+let totalImages = 51;  //total images
 let progress = 0;
 for (let move in playerMoves){
 	for(let i = 1; i <= playerMoves[move]; i++){
@@ -165,15 +163,18 @@ let progressStatus = document.getElementById('progressStatus');
 let allImages = Array.from(document.getElementsByTagName('img'));
 
 allImages.forEach(function(image){
-	image.addEventListener('load', function showProgress(){
-			progress += 100 / 48;
-			progressStatus.innerHTML = Math.ceil(progress);
-			console.log(event.target)
-			if(Math.ceil(progress) >= 100){			   	   
-               document.getElementById('preloader').style.visibility = 'hidden';
+	image.addEventListener('load', showProgress)
+})
+
+
+function showProgress(){
+			progress += 100 / totalImages;
+			progressStatus.innerHTML = Math.ceil(progress);			
+			if(Math.ceil(progress) >= 100){			   
                allImages.forEach(function(image){
                	 image.removeEventListener('load', showProgress)
                })
+               styleing();
+               document.getElementById('preloader').style.visibility = 'hidden';               
 			}
-		})	
-})
+		}	
