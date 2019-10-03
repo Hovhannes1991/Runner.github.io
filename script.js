@@ -4,22 +4,24 @@ let desert  = document.getElementById('desert'); // bg image
 let graund  = document.getElementById('graund'); // caracter ranning graund
 
 
-function styleing(){	
+function styleing(){
+	console.log('styleing')
+	desert.removeEventListener('load', styleing);
     game.style.width = desert.width / 2;
     desert.style.left = 0;
     graund.style.left = 0;
     graund.style.top = desert.height - graund.height + 10; // +10 to correct graund position
 
     player.height = desert.height / 2;
-    player.style.top = desert.height - player.height;  // (player.height * 15 / 100) to correct character position
+    player.style.top = desert.height - player.height - (player.height * 15 / 100);  // (player.height * 15 / 100) to correct character position
     player.style.left = 20;
 
     document.getElementById('for-border').style.height = desert.height - 10 + 'px';               //just for borders 
     document.getElementById('for-border').style.width = parseInt(game.style.width) - 20 + 'px';
 }
 
-
-desert.onload = styleing();
+desert.addEventListener('load', styleing);
+desert.src = 'src/fon.png';
 
 let bgMoveSpeed = 2;
 function bgMove(){
@@ -161,12 +163,17 @@ for (let move in playerMoves){
 
 let progressStatus = document.getElementById('progressStatus');
 let allImages = Array.from(document.getElementsByTagName('img'));
+
 allImages.forEach(function(image){
-	image.addEventListener('load', function(){
+	image.addEventListener('load', function showProgress(){
 			progress += 100 / 48;
 			progressStatus.innerHTML = Math.ceil(progress);
-			if(Math.ceil(progress) >= 100){
+			console.log(event.target)
+			if(Math.ceil(progress) >= 100){			   	   
                document.getElementById('preloader').style.visibility = 'hidden';
+               allImages.forEach(function(image){
+               	 image.removeEventListener('load', showProgress)
+               })
 			}
 		})	
 })
