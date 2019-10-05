@@ -4,8 +4,7 @@ let desert  = document.getElementById('desert'); // bg image
 let graund  = document.getElementById('graund'); // caracter ranning graund
 
 
-function styleing(){
-	console.log('styleing')
+function styleing(){	
 	desert.removeEventListener('load', styleing);
     game.style.width = desert.width / 2;
     desert.style.left = 0;
@@ -81,12 +80,10 @@ document.addEventListener('keydown', actionHundler);
 document.addEventListener('keyup', actionReturn);
 
 function actionHundler(){
+    if(action == 'Jump') { return false }	//for fix bug when many times click jump button
 	previousAction = action;
 	// removeing listener to disable bugs when player clicking many times, then returning listener after timeout
-	document.removeEventListener('keydown', actionHundler);
-	setTimeout(function(){
-       document.addEventListener('keydown', actionHundler);
-	}, 1000)
+	document.removeEventListener('keydown', actionHundler);	
 
 	switch (event.keyCode) {
 		case 37:       // left arrow
@@ -109,9 +106,13 @@ function idle(){
 	clearInterval(bgMoveInterval)
 }
 
-function jump(){
+function jump(){	
 	action = 'Jump';
-	actionStep = 1;	
+	actionStep = 1;
+	player.style.top = parseInt(player.style.top) - player.height / 2;
+		setTimeout(function(){
+           player.style.top = parseInt(player.style.top) + player.height / 2;
+		}, 500)
 	setTimeout(function(){		
 		action = previousAction;
 		actionStep = 1;
@@ -125,9 +126,13 @@ function run(){
 	bgMoveSpeed = 5;
 }
 
+
+
 function actionReturn(){
-	if(action == 'Jump') {
-		return false;
+	document.addEventListener('keydown', actionHundler);
+
+	if(action == 'Jump') {	
+		return;
 	}
 
 	else if (action == 'Run') {

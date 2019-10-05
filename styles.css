@@ -20,6 +20,7 @@ body {
 
 #player {	
 	position: absolute;
+	transition: top 0.7s linear;
 }
 
 #for-border {
